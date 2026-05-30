@@ -1,0 +1,74 @@
+{
+  "scores": [
+    {
+      "id": "qsofa",
+      "name": "qSOFA",
+      "status": "implemented",
+      "category": "sepsis",
+      "summary": "Quick Sepsis-related risk stratification tool"
+    },
+    {
+      "id": "gcs",
+      "name": "GCS",
+      "status": "implemented",
+      "category": "neurology",
+      "summary": "Glasgow Coma Scale"
+    },
+    {
+      "id": "nihss",
+      "name": "NIHSS",
+      "status": "planned",
+      "category": "neurology",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "rass",
+      "name": "RASS",
+      "status": "planned",
+      "category": "icu",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "apgar",
+      "name": "APGAR",
+      "status": "planned",
+      "category": "neonatal",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "chads_vasc",
+      "name": "CHA2DS2-VASc",
+      "status": "planned",
+      "category": "cardiology",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "has_bled",
+      "name": "HAS-BLED",
+      "status": "planned",
+      "category": "cardiology",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "timi",
+      "name": "TIMI",
+      "status": "planned",
+      "category": "cardiology",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "grace",
+      "name": "GRACE",
+      "status": "planned",
+      "category": "cardiology",
+      "summary": "Pending JSON definition"
+    },
+    {
+      "id": "news2",
+      "name": "NEWS2",
+      "status": "planned",
+      "category": "general",
+      "summary": "Pending JSON definition"
+    }
+  ]
+}

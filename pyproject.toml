@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medpulse"
+version = "0.1.0"
+description = "Offline-first deterministic clinical utility toolkit for frontline medical professionals."
+readme = "README.md"
+requires-python = ">=3.8,<3.13"
+license = { text = "MIT" }
+authors = [
+  { name = "MedPulse Contributors" }
+]
+keywords = [
+  "clinical",
+  "medicine",
+  "offline",
+  "calculator",
+  "score",
+  "tkinter",
+  "kivy"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Healthcare Industry",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: Android",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Medical Science Apps."
+]
+dependencies = [
+    "matplotlib>=3.3.0",
+    "pillow>=8.0.0"
+]
+
+[project.optional-dependencies]
+android = ["kivy>=2.1,<3"]
+dev = []
+
+[project.scripts]
+medpulse = "medpulse.app:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["medpulse*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"medpulse.data" = ["*.json"]
+"medpulse.data.scores" = ["*.json"]
+"medpulse.data.drugs" = ["*.json"]
+"medpulse.data.checklists" = ["*.json"]
+"medpulse.locales" = ["*.json"]
+

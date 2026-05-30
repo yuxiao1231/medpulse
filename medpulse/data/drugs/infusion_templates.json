@@ -1,0 +1,109 @@
+{
+  "templates": [
+    {
+      "id": "norepinephrine",
+      "name": "Norepinephrine",
+      "mode": "mcg_per_kg_min",
+      "concentrations": [
+        {
+          "label": "4 mg / 50 mL",
+          "amount": 4000,
+          "amount_unit": "mcg",
+          "volume_ml": 50,
+          "example": true
+        }
+      ],
+      "note": "Example standard concentration. Please verify with your institution's protocol."
+    },
+    {
+      "id": "dopamine",
+      "name": "Dopamine",
+      "mode": "mcg_per_kg_min",
+      "concentrations": [
+        {
+          "label": "200 mg / 50 mL",
+          "amount": 200000,
+          "amount_unit": "mcg",
+          "volume_ml": 50,
+          "example": true
+        }
+      ],
+      "note": "Example standard concentration. Please verify with your institution's protocol."
+    },
+    {
+      "id": "epinephrine",
+      "name": "Epinephrine",
+      "mode": "mcg_per_kg_min",
+      "concentrations": [
+        {
+          "label": "4 mg / 250 mL",
+          "amount": 4000,
+          "amount_unit": "mcg",
+          "volume_ml": 250,
+          "example": true
+        }
+      ],
+      "note": "Example standard concentration. Please verify with your institution's protocol."
+    },
+    {
+      "id": "nicardipine",
+      "name": "Nicardipine",
+      "mode": "custom",
+      "concentrations": [
+        {
+          "label": "25 mg / 250 mL",
+          "amount": 25000,
+          "amount_unit": "mcg",
+          "volume_ml": 250,
+          "example": true
+        }
+      ],
+      "note": "MVP version retains the template only; does not automatically deduce mg/h vs. target BP strategy."
+    },
+    {
+      "id": "nitroglycerin",
+      "name": "Nitroglycerin",
+      "mode": "custom",
+      "concentrations": [
+        {
+          "label": "50 mg / 250 mL",
+          "amount": 50000,
+          "amount_unit": "mcg",
+          "volume_ml": 250,
+          "example": true
+        }
+      ],
+      "note": "MVP version retains the template only; does not automatically deduce titration strategy."
+    },
+    {
+      "id": "insulin",
+      "name": "Insulin",
+      "mode": "custom",
+      "concentrations": [
+        {
+          "label": "50 U / 50 mL",
+          "amount": 50,
+          "amount_unit": "U",
+          "volume_ml": 50,
+          "example": true
+        }
+      ],
+      "note": "MVP version does not output glycemic treatment plan; template placeholder only."
+    },
+    {
+      "id": "heparin",
+      "name": "Heparin",
+      "mode": "custom",
+      "concentrations": [
+        {
+          "label": "25000 U / 250 mL",
+          "amount": 25000,
+          "amount_unit": "U",
+          "volume_ml": 250,
+          "example": true
+        }
+      ],
+      "note": "MVP version does not output anticoagulation plan; template placeholder only."
+    }
+  ]
+}

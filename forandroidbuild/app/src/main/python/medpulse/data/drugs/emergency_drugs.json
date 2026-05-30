@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "source_id": "emergency_drugs",
+    "version": "AHA 2020 / General Reference"
+  },
+  "status": "active",
+  "note": "For reference only. Does not replace clinical judgment, attending physician's opinion, or latest guidelines. Specific dosages must be individualized.",
+  "items": [
+    {
+      "id": "epinephrine",
+      "drug_name": "Epinephrine",
+      "indications": "Cardiac arrest, severe allergic reactions (anaphylactic shock), severe asthma exacerbation.",
+      "common_dose": "Cardiac arrest: 1mg IV/IO, repeat every 3-5 minutes; Anaphylaxis: 0.3-0.5mg IM (anterolateral thigh).",
+      "route": "IV, IO, IM, Endotracheal (ET, dose 2-2.5x higher)",
+      "warning": "Concentration confusion is extremely dangerous! 1:1000 (1mg/ml) for IM anaphylaxis; 1:10000 (0.1mg/ml) for IV cardiac arrest.",
+      "source": "AHA 2020"
+    },
+    {
+      "id": "norepinephrine",
+      "drug_name": "Norepinephrine",
+      "indications": "First-line vasoactive agent for various types of shock (especially septic and cardiogenic shock).",
+      "common_dose": "Initial 0.05-0.1 mcg/kg/min, titrate to blood pressure, max typically not exceeding 1.0-2.0 mcg/kg/min.",
+      "route": "Continuous IV infusion (central line preferred)",
+      "warning": "Extravasation causes severe tissue necrosis; avoid prolonged peripheral IV infusion. Phentolamine can be used for local infiltration if extravasation occurs.",
+      "source": "Surviving Sepsis Campaign 2021"
+    },
+    {
+      "id": "dopamine",
+      "drug_name": "Dopamine",
+      "indications": "Bradycardia with hypotension, specific types of shock.",
+      "common_dose": "2-20 mcg/kg/min, titrate as needed. Low/med dose (2-10) emphasizes inotropic effect; high dose (>10) emphasizes vasopressor effect.",
+      "route": "IV infusion",
+      "warning": "Not recommended for routine septic shock (may increase arrhythmia risk); norepinephrine is preferred.",
+      "source": "AHA 2020"
+    },
+    {
+      "id": "atropine",
+      "drug_name": "Atropine",
+      "indications": "Symptomatic bradycardia, organophosphate poisoning.",
+      "common_dose": "Bradycardia: 1mg IV, repeat every 3-5 min, max total dose 3mg. Organophosphate poisoning requires individualized high-dose titration.",
+      "route": "IV, ET",
+      "warning": "Doses <0.5mg for bradycardia may cause paradoxical heart rate deceleration; use with caution in severe ischemia or MI.",
+      "source": "AHA 2020"
+    },
+    {
+      "id": "amiodarone",
+      "drug_name": "Amiodarone",
+      "indications": "VF/pVT resuscitation, hemodynamically stable wide-QRS tachycardia.",
+      "common_dose": "Cardiac arrest (post-defibrillation): 1st dose 300mg IV, 2nd dose 150mg. Stable arrhythmias: 150mg over 10 min, then 1mg/min for 6h, followed by 0.5mg/min.",
+      "route": "IV",
+      "warning": "Rapid push easily causes severe hypotension and bradycardia. Must be diluted with 5% Dextrose (not normal saline).",
+      "source": "AHA 2020"
+    },
+    {
+      "id": "lidocaine",
+      "drug_name": "Lidocaine",
+      "indications": "VF/pVT (as an alternative to amiodarone), premature ventricular contractions.",
+      "common_dose": "Cardiac arrest: 1st dose 1-1.5mg/kg IV, repeat 0.5-0.75mg/kg in 5-10 min, max total dose 3mg/kg.",
+      "route": "IV, ET",
+      "warning": "Closely monitor for lidocaine toxicity (perioral numbness, seizures, altered mental status); reduce dose in hepatic impairment.",
+      "source": "AHA 2020"
+    },
+    {
+      "id": "nicardipine",
+      "drug_name": "Nicardipine",
+      "indications": "Hypertensive emergencies.",
+      "common_dose": "Initial 5 mg/h, increase by 2.5 mg/h every 5-15 min, typically max 15 mg/h. Taper for maintenance after target is reached.",
+      "route": "IV infusion",
+      "warning": "Rapid onset; avoid excessively rapid blood pressure drops leading to cerebral, cardiac, or renal hypoperfusion.",
+      "source": "General Reference"
+    },
+    {
+      "id": "naloxone",
+      "drug_name": "Naloxone",
+      "indications": "Reversal of opioid overdose and respiratory depression.",
+      "common_dose": "Initial 0.4-2mg IV/IM/SC, repeat every 2-3 min. If no response after 10mg, consider other causes.",
+      "route": "IV, IM, IN, ET",
+      "warning": "In opioid-dependent patients, titrate carefully with small doses (start at 0.04-0.1mg) to avoid precipitating severe withdrawal symptoms.",
+      "source": "General Reference"
+    },
+    {
+      "id": "calcium_gluconate",
+      "drug_name": "Calcium Gluconate",
+      "indications": "Hyperkalemia (with ECG changes), hypocalcemia, magnesium toxicity, calcium channel blocker overdose.",
+      "common_dose": "10% Calcium Gluconate 10-20ml IV, slow push (at least over 5-10 minutes). Can be repeated.",
+      "route": "IV",
+      "warning": "Do not co-administer with sodium bicarbonate in the same line to prevent calcium carbonate precipitation. Do not push rapidly to avoid bradycardia or cardiac arrest.",
+      "source": "General Reference"
+    },
+    {
+      "id": "sodium_bicarbonate",
+      "drug_name": "Sodium Bicarbonate",
+      "indications": "Severe metabolic acidosis, hyperkalemia, tricyclic antidepressant overdose.",
+      "common_dose": "1 mEq/kg IV (typically 50-100ml of 5% solution), adjust subsequently based on ABG.",
+      "route": "IV",
+      "warning": "Ensure adequate ventilation to excrete generated CO2. Do not mix directly with calcium-containing fluids (e.g., Lactated Ringer's).",
+      "source": "AHA 2020"
+    }
+  ]
+}

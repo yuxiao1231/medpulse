@@ -1,0 +1,24 @@
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.idea/
+.vscode/
+.mypy_cache/
+.ruff_cache/
+*.spec.bak
+
+# Android Specific
+.gradle/
+local.properties
+forandroidbuild/app/build/
+*.jks
+*.keystore
+

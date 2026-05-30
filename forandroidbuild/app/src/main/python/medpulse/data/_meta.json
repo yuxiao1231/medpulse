@@ -1,0 +1,58 @@
+{
+  "project": {
+    "id": "medpulse",
+    "name": "MedPulse",
+    "tagline": "Frontline clinical rapid calculation assistive tool",
+    "generated": "2026-05",
+    "license": "MIT",
+    "python_baseline": "3.8",
+    "default_locale": "en",
+    "maintained_translation": "en"
+  },
+  "sources": [
+    {
+      "id": "sepsis3_2016",
+      "name": "The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3)",
+      "version": "JAMA 2016",
+      "updated": "2016-02-23",
+      "type": "score_reference",
+      "url": "https://jamanetwork.com/journals/jama/fullarticle/2492881"
+    },
+    {
+      "id": "glasgow_coma_scale",
+      "name": "Glasgow Coma Scale",
+      "version": "Clinical reference summary",
+      "updated": "2026-05-06",
+      "type": "score_reference",
+      "url": "https://www.glasgowcomascale.org/"
+    },
+    {
+      "id": "merck_acid_base",
+      "name": "Merck Manual Professional Edition - Primary Changes and Compensations in Simple Acid-Base Disorders",
+      "version": "Professional Edition",
+      "updated": "2026-05-06",
+      "type": "formula_reference",
+      "url": "https://www.merckmanuals.com/en-ca/professional/multimedia/table/primary-changes-and-compensations-in-simple-acid-base-disorders"
+    },
+    {
+      "id": "merck_acid_base_overview",
+      "name": "Merck Manual Professional Edition - Acid-Base Regulation and Disorders",
+      "version": "Professional Edition",
+      "updated": "2026-05-06",
+      "type": "formula_reference",
+      "url": "https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/acid-base-regulation-and-disorders/acid-base-regulation-and-disorders"
+    },
+    {
+      "id": "mosteller_1987",
+      "name": "Simplified Calculation of Body-Surface Area",
+      "version": "N Engl J Med 1987",
+      "updated": "1987-10-22",
+      "type": "formula_reference",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJM198710223171717"
+    }
+  ],
+  "notes": [
+    "Drug and checklist example files are illustrative seed data and require local expert review before production use.",
+    "Core calculators are deterministic and designed for recomputation and manual verification."
+  ]
+}

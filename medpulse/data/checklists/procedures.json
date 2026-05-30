@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "source_id": "clinical_checklists",
+    "version": "v1.0"
+  },
+  "status": "active",
+  "note": "For reference only. Does not replace operational training and senior guidance.",
+  "items": [
+    {
+      "id": "lumbar_puncture",
+      "title": "Lumbar Puncture",
+      "checks": [
+        "Confirm indications and contraindications (e.g., no obvious signs of increased intracranial pressure).",
+        "Review CBC (Platelets >50×10^9/L) and coagulation profile (INR normal).",
+        "Informed consent signed.",
+        "Correct patient positioning (left lateral decubitus, fetal position) and identify puncture site (L3-L4 or L4-L5).",
+        "Operator washes hands, wears sterile gloves, and drapes sterile towels to establish a local sterile barrier.",
+        "Local infiltration anesthesia layer by layer with 2% lidocaine.",
+        "Measure opening pressure, collect specimens (3-4 tubes, 1-2ml each for routine, biochemical, and pathogen testing), and measure closing pressure.",
+        "Remove the needle, apply local pressure dressing, and instruct the patient to lie flat without a pillow for 4-6 hours."
+      ]
+    },
+    {
+      "id": "thoracentesis",
+      "title": "Thoracentesis",
+      "checks": [
+        "Confirm indications and rule out contraindications; review chest X-ray or ultrasound to confirm fluid/air location.",
+        "Review platelets and coagulation profile.",
+        "Informed consent signed.",
+        "Confirm puncture site (typically 7th-9th intercostal space at the scapular line or 7th-8th at the posterior axillary line, advancing over the superior border of the rib below).",
+        "Routine skin disinfection, wear sterile gloves, and apply a sterile fenestrated drape.",
+        "Anesthetize layer by layer to the parietal pleura with 2% lidocaine.",
+        "Aspirate fluid/air; do not exceed 600ml for the first tap, and no more than 1000ml per subsequent tap (to prevent re-expansion pulmonary edema).",
+        "Closely monitor patient vital signs during the procedure (watch for pleural reaction).",
+        "Remove the puncture needle and secure with a sterile dressing."
+      ]
+    },
+    {
+      "id": "paracentesis",
+      "title": "Paracentesis",
+      "checks": [
+        "Empty bladder, confirm indications and absence of contraindications (e.g., severe bowel distention, pregnancy).",
+        "Review platelets and coagulation profile.",
+        "Informed consent signed.",
+        "Positioning: junction of the outer and middle thirds of the line connecting the umbilicus to the left anterior superior iliac spine, or the intersection of the umbilical line and anterior axillary line in lateral decubitus.",
+        "Routine skin disinfection, apply a sterile fenestrated drape.",
+        "Local anesthesia layer by layer to the parietal peritoneum with 2% lidocaine.",
+        "Puncture and advance needle to collect specimen or drain fluid; avoid excessively rapid drainage (prevent hepatic encephalopathy and hypotension).",
+        "Apply local pressure after needle removal, secure with sterile gauze, and use an abdominal binder if necessary."
+      ]
+    },
+    {
+      "id": "central_venous_catheter",
+      "title": "Central Venous Catheterization",
+      "checks": [
+        "Confirm indications (e.g., massive fluid resuscitation, vasoactive drugs, CVP monitoring) and puncture site (subclavian, internal jugular, or femoral vein).",
+        "Platelets >50×10^9/L and normal coagulation profile.",
+        "Informed consent signed.",
+        "Use bedside ultrasound guidance and localization when available.",
+        "Adopt maximum sterile barrier precautions (handwashing, sterile gown, sterile gloves, mask, full body drape).",
+        "Local anesthesia with 2% lidocaine.",
+        "Advance needle until dark red blood is aspirated; insert guidewire without significant resistance.",
+        "Advance the catheter over the guidewire to the appropriate depth, remove the guidewire, confirm free blood return in all lumens, and flush with heparinized saline.",
+        "Suture and secure the catheter, apply a sterile transparent dressing.",
+        "Perform a post-procedure chest X-ray (if internal jugular/subclavian) to confirm catheter tip position and rule out pneumothorax."
+      ]
+    },
+    {
+      "id": "endotracheal_intubation",
+      "title": "Endotracheal Intubation",
+      "checks": [
+        "Assess the airway (e.g., Mallampati score, thyromental distance) and prepare a difficult airway plan (e.g., LMA, cricothyroidotomy).",
+        "ECG, SpO2, and NIBP are connected and continuously monitored.",
+        "Suction device is connected, tested, and ready to use.",
+        "Bag-valve-mask connected to high-flow oxygen; pre-oxygenate with 100% pure oxygen for at least 3 minutes.",
+        "Prepare and check the laryngoscope (light works), endotracheal tube (test cuff for leaks), and stylet.",
+        "Prepare induction and paralytic agents, establish a reliable IV line.",
+        "Perform intubation and inflate the cuff.",
+        "Confirm tube placement: auscultate bilateral breath sounds symmetrically with no gurgling over the epigastrium; observe end-tidal CO2 (ETCO2) waveform.",
+        "Secure the endotracheal tube properly and document the depth (at the incisors).",
+        "Order a bedside chest X-ray to confirm the tip position (3-5 cm above the carina)."
+      ]
+    },
+    {
+      "id": "chest_tube_insertion",
+      "title": "Chest Tube Insertion",
+      "checks": [
+        "Confirm the extent of pneumothorax or pleural effusion and surgical indications.",
+        "Review platelets and coagulation profile.",
+        "Informed consent signed.",
+        "Establish drainage site: mostly 2nd intercostal space at the midclavicular line for air; mostly 6th-8th intercostal space at the mid/posterior axillary line for fluid.",
+        "Wide routine skin disinfection, apply a sterile fenestrated drape.",
+        "Local infiltration anesthesia with 2% lidocaine down to the parietal pleura.",
+        "Incise skin and subcutaneous tissue over the superior border of the rib below; bluntly dissect muscle layers and pleura to enter the chest.",
+        "Insert the chest tube, ensuring all side holes are completely within the pleural cavity.",
+        "Connect to a water seal system; observe for air bubbling or fluid drainage and fluid column oscillation.",
+        "Suture the incision, secure the drainage tube, and apply a sterile dressing.",
+        "Review chest X-ray to confirm tube position and lung re-expansion."
+      ]
+    }
+  ]
+}

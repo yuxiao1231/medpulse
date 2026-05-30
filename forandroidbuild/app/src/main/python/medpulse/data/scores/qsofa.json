@@ -1,0 +1,40 @@
+{
+  "id": "qsofa",
+  "name": "qSOFA",
+  "status": "implemented",
+  "summary": "Quick Sepsis Related Organ Failure Assessment, used to identify elevated risk of adverse outcomes.",
+  "guidance": "Score is used for risk stratification, not directly for sepsis diagnosis.",
+  "source_ids": ["sepsis3_2016"],
+  "items": [
+    {
+      "id": "respiratory_rate_high",
+      "label": "Respiratory Rate ≥ 22/min",
+      "type": "boolean",
+      "score_when_true": 1
+    },
+    {
+      "id": "altered_mentation",
+      "label": "Altered Mentation",
+      "type": "boolean",
+      "score_when_true": 1
+    },
+    {
+      "id": "sbp_low",
+      "label": "Systolic BP ≤ 100 mmHg",
+      "type": "boolean",
+      "score_when_true": 1
+    }
+  ],
+  "risk_bands": [
+    {
+      "min_score": 0,
+      "max_score": 1,
+      "label": "Low Risk"
+    },
+    {
+      "min_score": 2,
+      "max_score": 3,
+      "label": "High Risk"
+    }
+  ]
+}

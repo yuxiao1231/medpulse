@@ -1,0 +1,63 @@
+{
+  "id": "gcs",
+  "name": "Glasgow Coma Scale",
+  "status": "implemented",
+  "summary": "GCS consists of eye, verbal, and motor responses, used for structured recording of consciousness state.",
+  "guidance": "Total score is used for severity stratification, not directly for treatment decisions.",
+  "source_ids": ["glasgow_coma_scale"],
+  "items": [
+    {
+      "id": "eye",
+      "label": "Eye Opening",
+      "type": "choice",
+      "options": [
+        { "id": "none", "label": "None", "score": 1 },
+        { "id": "pain", "label": "To Pain", "score": 2 },
+        { "id": "speech", "label": "To Speech", "score": 3 },
+        { "id": "spontaneous", "label": "Spontaneous", "score": 4 }
+      ]
+    },
+    {
+      "id": "verbal",
+      "label": "Verbal Response",
+      "type": "choice",
+      "options": [
+        { "id": "none", "label": "None", "score": 1 },
+        { "id": "sounds", "label": "Incomprehensible Sounds", "score": 2 },
+        { "id": "words", "label": "Inappropriate Words", "score": 3 },
+        { "id": "confused", "label": "Confused", "score": 4 },
+        { "id": "oriented", "label": "Oriented", "score": 5 }
+      ]
+    },
+    {
+      "id": "motor",
+      "label": "Motor Response",
+      "type": "choice",
+      "options": [
+        { "id": "none", "label": "None", "score": 1 },
+        { "id": "extension", "label": "Abnormal Extension", "score": 2 },
+        { "id": "flexion", "label": "Abnormal Flexion", "score": 3 },
+        { "id": "withdrawal", "label": "Withdraws to Pain", "score": 4 },
+        { "id": "localizes", "label": "Localizes to Pain", "score": 5 },
+        { "id": "obeys", "label": "Obeys Commands", "score": 6 }
+      ]
+    }
+  ],
+  "risk_bands": [
+    {
+      "min_score": 3,
+      "max_score": 8,
+      "label": "Severe TBI / Comatose"
+    },
+    {
+      "min_score": 9,
+      "max_score": 12,
+      "label": "Moderate TBI"
+    },
+    {
+      "min_score": 13,
+      "max_score": 15,
+      "label": "Mild TBI / Alert"
+    }
+  ]
+}
