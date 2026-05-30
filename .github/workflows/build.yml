@@ -46,8 +46,10 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: cd forandroidbuild && chmod +x gradlew
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.4'
 
     - name: Decode Keystore from Secrets
       run: |
@@ -60,7 +62,7 @@ jobs:
         KEYSTORE_PASSWORD: password123
         KEY_ALIAS: key0
         KEY_PASSWORD: password123
-      run: cd forandroidbuild && ./gradlew assembleRelease
+      run: cd forandroidbuild && gradle assembleRelease
 
     - name: Upload Android Artifact
       uses: actions/upload-artifact@v4
