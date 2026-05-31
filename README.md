@@ -41,7 +41,7 @@ By strictly decoupling the complex, deterministic medical algorithms into a pure
 ### 🚀 Getting Started
 
 #### Desktop (Python/Tkinter)
-Ensure you have Python 3.8+ installed.
+Ensure you have Python 3.4+ installed (The codebase deliberately uses Python 3.4 syntax to guarantee compatibility with legacy Windows XP hospital systems).
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/medpulse.git
@@ -82,7 +82,7 @@ cd forandroidbuild
 ### 🚀 快速上手
 
 #### 桌面端 (Python/Tkinter)
-请确保你已安装 Python 3.8 及以上版本。
+请确保你已安装 Python 3.4 及以上版本（核心代码刻意降级并锁定在 3.4 语法，以确保能直接打包成兼容医院老旧 Windows XP 电脑的执行文件）。
 ```bash
 # 克隆代码库
 git clone https://github.com/yourusername/medpulse.git
