@@ -13,7 +13,7 @@ class ABGTests(unittest.TestCase):
         self.assertIn("Metabolic acidosis", analysis.summary)
         self.assertTrue(any("Step 3." in step for step in analysis.steps))
         self.assertIn("pH < 7.35", analysis.formula)
-        self.assertIn("actual PCO2", analysis.substitution)
+        self.assertIn("actual PCO\u2082", analysis.substitution)
         self.assertIn("Metabolic acidosis", analysis.conclusion)
 
     def test_mixed_acidosis_warning(self):

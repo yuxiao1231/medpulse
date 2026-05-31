@@ -175,7 +175,7 @@ class MedPulseTkApp(tk.Tk):
             if not self.preferences.get(view_id, True) and view_id != "settings":
                 continue
                 
-            btn = ttk.Button(self.sidebar, text=f"  {label}", style="Sidebar.TButton", command=lambda vid=view_id: self.show_view(vid))
+            btn = ttk.Button(self.sidebar, text="  " + label, style="Sidebar.TButton", command=lambda vid=view_id: self.show_view(vid))
             btn.pack(fill="x", padx=10, pady=2)
             self.sidebar_buttons[view_id] = btn
 

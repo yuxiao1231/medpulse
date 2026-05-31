@@ -7,7 +7,7 @@ def wrap_call(module_name, func_name, kwargs_json):
         from medpulse.ui.adapter import ResultFormatter
         from medpulse.core.models import CalculationResult, ScoreResult, ABGAnalysis
 
-        module = importlib.import_module(f"medpulse.core.calculators.{module_name}")
+        module = importlib.import_module("medpulse.core.calculators.%s" % module_name)
         func = getattr(module, func_name)
         
         # kwargs_json is always a JSON string from Kotlin side
@@ -62,7 +62,7 @@ def get_implemented_scores():
 def get_score_schema(score_id):
     try:
         import pkgutil
-        data_bytes = pkgutil.get_data("medpulse.data.scores", f"{score_id}.json")
+        data_bytes = pkgutil.get_data("medpulse.data.scores", "%s.json" % score_id)
         data = json.loads(data_bytes.decode('utf-8'))
         return json.dumps({"success": True, "result": json.dumps(data)})
     except Exception as e:

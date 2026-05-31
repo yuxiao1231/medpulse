@@ -1,23 +1,19 @@
 """Shared dataclasses for deterministic outputs."""
 
-from dataclasses import dataclass, field
-from typing import Dict, List
-
-
-@dataclass
 class CalculationResult:
-    key: str
-    label: str
-    formula: str
-    substitution: str
-    value: float
-    unit: str
-    reference: str
-    interpretation: str = ""
-    latex_formula: str = ""
-    conclusion: str = ""
-    warnings: List[str] = field(default_factory=list)
-    metadata: Dict[str, object] = field(default_factory=dict)
+    def __init__(self, key, label, formula, substitution, value, unit, reference, interpretation="", latex_formula="", conclusion="", warnings=None, metadata=None):
+        self.key = key
+        self.label = label
+        self.formula = formula
+        self.substitution = substitution
+        self.value = value
+        self.unit = unit
+        self.reference = reference
+        self.interpretation = interpretation
+        self.latex_formula = latex_formula
+        self.conclusion = conclusion
+        self.warnings = warnings if warnings is not None else []
+        self.metadata = metadata if metadata is not None else {}
 
     def format_value(self):
         return "%.2f" % self.value if isinstance(self.value, (int, float)) else str(self.value)
@@ -27,22 +23,22 @@ class CalculationResult:
         return self.value
 
 
-@dataclass
 class ScoreResult:
-    score_id: str
-    label: str
-    total_score: int
-    risk_level: str
-    guidance: str
-    breakdown: List[Dict[str, object]] = field(default_factory=list)
+    def __init__(self, score_id, label, total_score, risk_level, guidance, breakdown=None):
+        self.score_id = score_id
+        self.label = label
+        self.total_score = total_score
+        self.risk_level = risk_level
+        self.guidance = guidance
+        self.breakdown = breakdown if breakdown is not None else []
 
 
-@dataclass
 class ABGAnalysis:
-    summary: str
-    steps: List[str]
-    warnings: List[str] = field(default_factory=list)
-    metadata: Dict[str, object] = field(default_factory=dict)
-    formula: str = ""
-    substitution: str = ""
-    conclusion: str = ""
+    def __init__(self, summary, steps, warnings=None, metadata=None, formula="", substitution="", conclusion=""):
+        self.summary = summary
+        self.steps = steps
+        self.warnings = warnings if warnings is not None else []
+        self.metadata = metadata if metadata is not None else {}
+        self.formula = formula
+        self.substitution = substitution
+        self.conclusion = conclusion

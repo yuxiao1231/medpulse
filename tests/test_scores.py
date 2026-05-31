@@ -31,7 +31,7 @@ class ScoreTests(unittest.TestCase):
             },
         )
         self.assertEqual(result.total_score, 15)
-        self.assertEqual(result.risk_level, "Mild Head Injury")
+        self.assertEqual(result.risk_level, "Mild TBI / alert")
 
 
 if __name__ == "__main__":
