@@ -28,6 +28,9 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
+import os
+icon_path = os.path.abspath('pill.ico') if os.path.exists('pill.ico') else None
+
 exe = EXE(
     pyz,
     a.scripts,
@@ -43,5 +46,5 @@ exe = EXE(
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,
-    icon='pill.ico',
+    icon=icon_path,
 )
