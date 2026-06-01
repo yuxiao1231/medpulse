@@ -25,9 +25,9 @@ def list_json_files(path):
     import sys
     names = []
     
-    # In PyInstaller bundle
+    # Check if we are running in a PyInstaller bundle
     if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-        pkg_dir = os.path.join(sys._MEIPASS, *package.split('.'))
+        pkg_dir = os.path.join(sys._MEIPASS, 'medpulse', 'data', path) if path else os.path.join(sys._MEIPASS, 'medpulse', 'data')
         if os.path.isdir(pkg_dir):
             for name in os.listdir(pkg_dir):
                 if name.endswith(".json"):
