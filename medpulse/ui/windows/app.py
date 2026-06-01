@@ -222,7 +222,9 @@ class MedPulseTkApp(tk.Tk):
         self.title(self._t("app_title", "MedPulse"))
         
         # 3. Destroy current layout
-        if hasattr(self, 'sidebar'): self.sidebar.destroy()
+        if hasattr(self, 'sidebar_container'): self.sidebar_container.destroy()
+        elif hasattr(self, 'sidebar'): self.sidebar.destroy()
+        
         if hasattr(self, 'main_content'): self.main_content.destroy()
         
         # 4. Clear cache
