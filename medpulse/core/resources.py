@@ -22,8 +22,20 @@ def load_json(path, filename):
 
 def list_json_files(path):
     package = _package_for(path)
-    pkg = importlib.import_module(package)
+    import sys
     names = []
+    
+    # In PyInstaller bundle
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        pkg_dir = os.path.join(sys._MEIPASS, *package.split('.'))
+        if os.path.isdir(pkg_dir):
+            for name in os.listdir(pkg_dir):
+                if name.endswith(".json"):
+                    names.append(name)
+        return sorted(names)
+        
+    # Normal Python run
+    pkg = importlib.import_module(package)
     if hasattr(pkg, '__file__') and pkg.__file__:
         pkg_dir = os.path.dirname(pkg.__file__)
         if os.path.isdir(pkg_dir):
