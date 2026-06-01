@@ -1,7 +1,9 @@
 """Helpers for loading packaged JSON resources."""
 
 import json
-from importlib import resources
+import pkgutil
+import os
+import importlib
 
 
 def _package_for(path):
@@ -12,16 +14,22 @@ def _package_for(path):
 
 def load_json(path, filename):
     package = _package_for(path)
-    with resources.open_text(package, filename, encoding="utf-8") as handle:
-        return json.load(handle)
+    data = pkgutil.get_data(package, filename)
+    if data is None:
+        raise FileNotFoundError("%s not found in %s" % (filename, package))
+    return json.loads(data.decode("utf-8"))
 
 
 def list_json_files(path):
     package = _package_for(path)
+    pkg = importlib.import_module(package)
     names = []
-    for name in resources.contents(package):
-        if name.endswith(".json"):
-            names.append(name)
+    if hasattr(pkg, '__file__') and pkg.__file__:
+        pkg_dir = os.path.dirname(pkg.__file__)
+        if os.path.isdir(pkg_dir):
+            for name in os.listdir(pkg_dir):
+                if name.endswith(".json"):
+                    names.append(name)
     return sorted(names)
 
 
