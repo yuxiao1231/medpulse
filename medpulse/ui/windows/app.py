@@ -23,7 +23,7 @@ from medpulse.core.scores import ScoreService
 from medpulse.core.resources import load_json, list_json_files
 from medpulse.i18n import Translator, set_global_locale
 from medpulse.ui.adapter import ResultFormatter
-from medpulse.ui.windows.widgets import CustomCheckbox
+from medpulse.ui.windows.widgets import CustomCheckbox, ScrollableFrame
 
 
 class MedPulseTkApp(tk.Tk):
@@ -70,8 +70,8 @@ class MedPulseTkApp(tk.Tk):
         self._image_cache = []
 
         self.title(self.translator.t("app_title", "MedPulse"))
-        self.geometry("1000x750")
-        self.minsize(900, 640)
+        self.geometry("900x600")
+        self.minsize(800, 500)
         self.configure(bg="#ffffff")
         
         self.current_frame = None
@@ -112,9 +112,13 @@ class MedPulseTkApp(tk.Tk):
 
     def _build_layout(self):
         # Sidebar
-        self.sidebar = ttk.Frame(self, style="Sidebar.TFrame", width=200)
-        self.sidebar.pack(side="left", fill="y")
-        self.sidebar.pack_propagate(False)
+        self.sidebar_container = ttk.Frame(self, style="Sidebar.TFrame", width=220)
+        self.sidebar_container.pack(side="left", fill="y")
+        self.sidebar_container.pack_propagate(False)
+        
+        self.sidebar_scroll = ScrollableFrame(self.sidebar_container, bg="#f3f4f6")
+        self.sidebar_scroll.pack(fill="both", expand=True)
+        self.sidebar = self.sidebar_scroll.scrollable_frame
         
         ttk.Label(self.sidebar, text="MedPulse", style="Sidebar.TLabel", font=("Segoe UI", 14, "bold")).pack(pady=(20, 10), padx=10, anchor="w")
         ttk.Label(self.sidebar, text=self._t("infusion_speed_calc", "Clinical Calculator"), style="Sidebar.TLabel", font=("Segoe UI", 9), foreground="#6b7280").pack(pady=(0, 20), padx=10, anchor="w")
@@ -139,8 +143,9 @@ class MedPulseTkApp(tk.Tk):
         self.subtitle_label.pack(anchor="w", pady=(5,0))
         
         # Content Container
-        self.content_container = ttk.Frame(self.main_content, style="TFrame")
-        self.content_container.pack(fill="both", expand=True, padx=30, pady=10)
+        self.content_scroll = ScrollableFrame(self.main_content, bg="#ffffff")
+        self.content_scroll.pack(fill="both", expand=True, padx=20, pady=10)
+        self.content_container = self.content_scroll.scrollable_frame
 
         # Define views — every label and description goes through _t()
         self.views = [
