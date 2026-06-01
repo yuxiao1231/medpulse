@@ -70,8 +70,9 @@ class ScrollableFrame(tk.Frame):
         
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
         
-        self.canvas.pack(side="left", fill="both", expand=True)
+        # Pack scrollbar first so it doesn't get pushed out of the window by expand=True
         self.scrollbar.pack(side="right", fill="y")
+        self.canvas.pack(side="left", fill="both", expand=True)
         
         self.canvas.bind('<Configure>', self._on_canvas_configure)
         
