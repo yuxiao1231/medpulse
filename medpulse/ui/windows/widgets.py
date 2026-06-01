@@ -22,7 +22,10 @@ class CustomCheckbox(tk.Canvas):
         self.label = self.create_text(26, 12, text=self.text, fill=self.fg, anchor="w", font=("Segoe UI", 10))
         
         self.bind("<Button-1>", self.toggle)
-        self.variable.trace_add("write", self.update_view)
+        if hasattr(self.variable, 'trace_add'):
+            self.variable.trace_add("write", self.update_view)
+        else:
+            self.variable.trace("w", self.update_view)
         
         # Calculate appropriate width
         self.update_idletasks()
