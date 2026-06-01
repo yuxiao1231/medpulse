@@ -18,7 +18,6 @@ a = Analysis(
     datas=datas,
     hiddenimports=['medpulse.locales', 'medpulse.data', 'medpulse.data.scores', 'medpulse.data.checklists', 'medpulse.data.drugs'],
     hookspath=[],
-    hooksconfig={},
     runtime_hooks=[],
     excludes=[],
     win_no_prefer_redirects=False,
@@ -44,6 +43,5 @@ exe = EXE(
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,
-    disable_windowed_traceback=True,
     icon='pill.ico',
 )
