@@ -127,7 +127,7 @@ class MedPulseTkApp(tk.Tk):
         self.header_frame = ttk.Frame(self.main_content, style="TFrame")
         self.header_frame.pack(fill="x", padx=30, pady=(20, 10))
         
-        self.lang_btn = ttk.Button(self.header_frame, text="🌏 Language", command=self.toggle_language)
+        self.lang_btn = ttk.Button(self.header_frame, text="Language", command=self.toggle_language)
         self.lang_btn.pack(side="right", anchor="n")
         
         title_container = ttk.Frame(self.header_frame, style="TFrame")
