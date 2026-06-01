@@ -94,15 +94,22 @@ class MedPulseTkApp(tk.Tk):
         style.configure("Subtitle.TLabel", font=("Segoe UI", 12), background="#ffffff", foreground="#4b5563")
 
     def _set_icon(self):
-        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-        icon_path = os.path.join(base_path, 'pill.ico')
-        if not os.path.exists(icon_path) and getattr(sys, 'frozen', False):
-            icon_path = os.path.join(os.path.dirname(sys.executable), 'pill.ico')
-        if os.path.exists(icon_path):
-            try:
-                self.iconbitmap(icon_path)
-            except Exception:
-                pass
+        icon_b64 = "R0lGODlhIAAgAIUAAAAAADpDQfdtV/nqsTVAPkpIRP7ytzM8PEJKSVRVVUpSUNVmVFNaUENLSkBJR9zUo8/Jm0pTUZNYTHp6ellmZLVgUbaxjI2OdOndqbFfUbGtibG5uaqqVf9wWVJlVqCdfp+fn5yef3//f39/j6pVVVVVakZQTT9VVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAgACAAQAj/AAEIHEiwoEAKChoEWBiggQIKBiMmQMDwAIMHBgZo3LjRAASGAQAoYEigwAIBKFFWCEAgwIEAGjIaeMDg5UITIgAoZCkhpc+UCwq0XIggQcSjBidEYOmywAUIGDBAuFDAZgAFBSeCHPoyJsevBi7Y3Lnw5M+zK0EujLDBIAeKCwm0LFCA5dAARZHqPToBLsm7REvsBaC1pUWMXwd4FLoQa1a/Lj9kTPwVA+OQhP2WXNBhpWGYkzvStOkgwciFJs+m9OwyQIiaDNkOjFtA9dmgdxFMkOiAtlmfuBnmHSxQQW+1Cx04Js58oHHkyZcz37A07ku6LnNzGAyiuksGEAxMlxYPAXaA0ki1LjwcGqzYhQ0k+mVPmaPloY/VtrTQPrHHuwOpx1IBEjC1X38aLTYUViRolhpKGRgYAH+iwdYSVh4ct5lqEbZ04GhMRbCbTnH1ZBuEBh7wUksRjEAQbSf61IEEgDUw4osM/WZbcESdcNRpATx422V4GaUXkCVJYNYCEhA53GAeQGaXWk82BwBCZDX0kJUABAQAOw=="
+        try:
+            self._icon_img = tk.PhotoImage(data=icon_b64)
+            # True means it applies to all future toplevel windows
+            self.tk.call('wm', 'iconphoto', self._w, True, self._icon_img)
+        except Exception as e:
+            # Fallback to standard iconbitmap if PhotoImage fails (it shouldn't)
+            base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+            icon_path = os.path.join(base_path, 'pill.ico')
+            if not os.path.exists(icon_path) and getattr(sys, 'frozen', False):
+                icon_path = os.path.join(os.path.dirname(sys.executable), 'pill.ico')
+            if os.path.exists(icon_path):
+                try:
+                    self.iconbitmap(icon_path)
+                except Exception:
+                    pass
 
     # ------------------------------------------------------------------ #
     #  Helper: shorthand for self.translator.t
