@@ -15,8 +15,44 @@
   <i>"Write once, run anywhere" medical logic.</i>
   <br><br>
   <b>硬核开源的一线临床计算工具。</b><br>
-  <i>“一次编写，多端运行” 的纯正医疗逻辑内核。</i>
+  <i>“一次编写，多端运行”的纯正医疗逻辑内核。</i>
 </p>
+
+<p align="center">
+  <img src="picture/1.png" width="600" alt="MedPulse Screenshot">
+</p>
+
+---
+
+## 🏛 Architecture (架构概览)
+
+```mermaid
+graph TD
+    subgraph UI_Layer [UI Layer / 表现层]
+        Desktop[Desktop PC <br> Tkinter GUI]
+        Android[Android Mobile <br> Jetpack Compose]
+    end
+
+    subgraph Bridge_Layer [Bridge Layer / 桥接层]
+        PythonEnv[Python 3.4 Runtime]
+        Chaquopy[Chaquopy JNI Bridge]
+    end
+
+    subgraph Core_Layer [Core Logic / 纯净逻辑层]
+        Core[MedPulse Python Core]
+        Calc[Medical Calculators <br> ABG, Infusions, Scores]
+        I18n[Localization <br> JSON Data]
+    end
+    
+    Desktop --> PythonEnv
+    PythonEnv --> Core
+    
+    Android --> Chaquopy
+    Chaquopy --> Core
+    
+    Core --> Calc
+    Core --> I18n
+```
 
 ---
 
