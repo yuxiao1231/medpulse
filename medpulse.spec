@@ -1,26 +1,56 @@
 # -*- mode: python ; coding: utf-8 -*-
+import os
 
-datas = [
-    ('medpulse/data/*', 'medpulse/data'),
-    ('medpulse/data/checklists/*', 'medpulse/data/checklists'),
-    ('medpulse/data/drugs/*', 'medpulse/data/drugs'),
-    ('medpulse/data/scores/*', 'medpulse/data/scores'),
-    ('medpulse/locales/*', 'medpulse/locales'),
-    ('medpulse/ui/windows/assets/*', 'medpulse/ui/windows/assets'),
+# Filter out Android and Renderer files from being collected as datas
+py_datas = []
+for root, dirs, files in os.walk('medpulse'):
+    dirs[:] = [d for d in dirs if d != '__pycache__' and d != 'android']
+    for f in files:
+        if f.endswith('.py') or f.endswith('.json') or f.endswith('.ttf') or f.endswith('.ttc'):
+            if f == 'renderer.py':
+                continue
+            src = os.path.join(root, f)
+            py_datas.append((src, root))
+
+datas = py_datas + [
     ('pill.ico', '.')
+]
+
+# Only include lightweight standard libraries and tkinter.
+# Exclude matplotlib, PIL, kivy, android.
+hidden = [
+    'tkinter',
+    'tkinter.ttk',
+    'tkinter.messagebox',
+    'ctypes',
+    'math',
+    'decimal',
+    'traceback',
+    'json',
+    'glob'
+]
+
+# Explicitly tell PyInstaller to exclude these massive packages
+excludes = [
+    'matplotlib',
+    'PIL',
+    'kivy',
+    'scipy',
+    'numpy',
+    'medpulse.ui.android'
 ]
 
 block_cipher = None
 
 a = Analysis(
-    ["medpulse/__main__.py"],
+    ['medpulse/__main__.py'],
     pathex=[],
     binaries=[],
     datas=datas,
-    hiddenimports=['medpulse.locales', 'medpulse.data', 'medpulse.data.scores', 'medpulse.data.checklists', 'medpulse.data.drugs'],
+    hiddenimports=hidden,
     hookspath=[],
     runtime_hooks=[],
-    excludes=[],
+    excludes=excludes,
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
     cipher=block_cipher,
@@ -29,7 +59,6 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
-import os
 icon_path = os.path.abspath('pill.ico') if os.path.exists('pill.ico') else None
 
 exe = EXE(
