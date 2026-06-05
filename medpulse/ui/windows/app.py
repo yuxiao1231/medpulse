@@ -79,6 +79,7 @@ class MedPulseTkApp(tk.Tk):
         self.sidebar_buttons = {}
 
         self._build_styles()
+        self._load_fonts()
         self._set_icon()
         self._build_layout()
 
@@ -93,18 +94,39 @@ class MedPulseTkApp(tk.Tk):
         style.configure("Title.TLabel", font=("Segoe UI", 24, "bold"), background="#ffffff", foreground="#1f2937")
         style.configure("Subtitle.TLabel", font=("Segoe UI", 12), background="#ffffff", foreground="#4b5563")
 
-    def _set_icon(self):
-        icon_b64 = "R0lGODlhIAAgAIUAAAAAADpDQfdtV/nqsTVAPkpIRP7ytzM8PEJKSVRVVUpSUNVmVFNaUENLSkBJR9zUo8/Jm0pTUZNYTHp6ellmZLVgUbaxjI2OdOndqbFfUbGtibG5uaqqVf9wWVJlVqCdfp+fn5yef3//f39/j6pVVVVVakZQTT9VVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAgACAAQAj/AAEIHEiwoEAKChoEWBiggQIKBiMmQMDwAIMHBgZo3LjRAASGAQAoYEigwAIBKFFWCEAgwIEAGjIaeMDg5UITIgAoZCkhpc+UCwq0XIggQcSjBidEYOmywAUIGDBAuFDAZgAFBSeCHPoyJsevBi7Y3Lnw5M+zK0EujLDBIAeKCwm0LFCA5dAARZHqPToBLsm7REvsBaC1pUWMXwd4FLoQa1a/Lj9kTPwVA+OQhP2WXNBhpWGYkzvStOkgwciFJs+m9OwyQIiaDNkOjFtA9dmgdxFMkOiAtlmfuBnmHSxQQW+1Cx04Js58oHHkyZcz37A07ku6LnNzGAyiuksGEAxMlxYPAXaA0ki1LjwcGqzYhQ0k+mVPmaPloY/VtrTQPrHHuwOpx1IBEjC1X38aLTYUViRolhpKGRgYAH+iwdYSVh4ct5lqEbZ04GhMRbCbTnH1ZBuEBh7wUksRjEAQbSf61IEEgDUw4osM/WZbcESdcNRpATx422V4GaUXkCVJYNYCEhA53GAeQGaXWk82BwBCZDX0kJUABAQAOw=="
-        try:
-            self._icon_img = tk.PhotoImage(data=icon_b64)
-            # True means it applies to all future toplevel windows
-            self.tk.call('wm', 'iconphoto', self._w, True, self._icon_img)
-        except Exception as e:
-            # Fallback to standard iconbitmap if PhotoImage fails (it shouldn't)
+    def _load_fonts(self):
+        import ctypes
+        if sys.platform == "win32":
             base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-            icon_path = os.path.join(base_path, 'pill.ico')
-            if not os.path.exists(icon_path) and getattr(sys, 'frozen', False):
-                icon_path = os.path.join(os.path.dirname(sys.executable), 'pill.ico')
+            font_path = os.path.join(base_path, 'assets', 'unifont-16.0.04.ttf')
+            if not os.path.exists(font_path) and getattr(sys, 'frozen', False):
+                font_path = os.path.join(os.path.dirname(sys.executable), 'assets', 'unifont-16.0.04.ttf')
+            
+            if os.path.exists(font_path):
+                try:
+                    FR_PRIVATE = 0x10
+                    ctypes.windll.gdi32.AddFontResourceExW(font_path, FR_PRIVATE, 0)
+                except Exception:
+                    pass
+
+    def _set_icon(self):
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        icon_path = os.path.join(base_path, 'pill.ico')
+        if not os.path.exists(icon_path) and getattr(sys, 'frozen', False):
+            icon_path = os.path.join(os.path.dirname(sys.executable), 'pill.ico')
+            
+        import platform
+        # Check if running on Windows XP (version <= 5)
+        is_xp = platform.release() == 'XP' or (hasattr(sys, 'getwindowsversion') and sys.getwindowsversion().major <= 5)
+        
+        if is_xp:
+            icon_b64 = "R0lGODlhIAAgAIUAAAAAADpDQfdtV/nqsTVAPkpIRP7ytzM8PEJKSVRVVUpSUNVmVFNaUENLSkBJR9zUo8/Jm0pTUZNYTHp6ellmZLVgUbaxjI2OdOndqbFfUbGtibG5uaqqVf9wWVJlVqCdfp+fn5yef3//f39/j6pVVVVVakZQTT9VVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAgACAAQAj/AAEIHEiwoEAKChoEWBiggQIKBiMmQMDwAIMHBgZo3LjRAASGAQAoYEigwAIBKFFWCEAgwIEAGjIaeMDg5UITIgAoZCkhpc+UCwq0XIggQcSjBidEYOmywAUIGDBAuFDAZgAFBSeCHPoyJsevBi7Y3Lnw5M+zK0EujLDBIAeKCwm0LFCA5dAARZHqPToBLsm7REvsBaC1pUWMXwd4FLoQa1a/Lj9kTPwVA+OQhP2WXNBhpWGYkzvStOkgwciFJs+m9OwyQIiaDNkOjFtA9dmgdxFMkOiAtlmfuBnmHSxQQW+1Cx04Js58oHHkyZcz37A07ku6LnNzGAyiuksGEAxMlxYPAXaA0ki1LjwcGqzYhQ0k+mVPmaPloY/VtrTQPrHHuwOpx1IBEjC1X38aLTYUViRolhpKGRgYAH+iwdYSVh4ct5lqEbZ04GhMRbCbTnH1ZBuEBh7wUksRjEAQbSf61IEEgDUw4osM/WZbcESdcNRpATx422V4GaUXkCVJYNYCEhA53GAeQGaXWk82BwBCZDX0kJUABAQAOw=="
+            try:
+                self._icon_img = tk.PhotoImage(data=icon_b64)
+                self.tk.call('wm', 'iconphoto', self._w, True, self._icon_img)
+            except Exception:
+                pass
+        else:
             if os.path.exists(icon_path):
                 try:
                     self.iconbitmap(icon_path)

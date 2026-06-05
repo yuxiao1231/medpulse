@@ -6,6 +6,7 @@ datas = [
     ('medpulse/data/drugs/*', 'medpulse/data/drugs'),
     ('medpulse/data/scores/*', 'medpulse/data/scores'),
     ('medpulse/locales/*', 'medpulse/locales'),
+    ('medpulse/ui/windows/assets/*', 'medpulse/ui/windows/assets'),
     ('pill.ico', '.')
 ]
 
