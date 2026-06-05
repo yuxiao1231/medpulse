@@ -23,7 +23,7 @@ from medpulse.core.scores import ScoreService
 from medpulse.core.resources import load_json, list_json_files
 from medpulse.i18n import Translator, set_global_locale
 from medpulse.ui.adapter import ResultFormatter
-from medpulse.ui.windows.widgets import CustomCheckbox
+from medpulse.ui.windows.widgets import CustomCheckbox, ScrollableFrame
 
 
 class MedPulseTkApp(tk.Tk):
@@ -70,8 +70,8 @@ class MedPulseTkApp(tk.Tk):
         self._image_cache = []
 
         self.title(self.translator.t("app_title", "MedPulse"))
-        self.geometry("1000x750")
-        self.minsize(900, 640)
+        self.geometry("900x600")
+        self.minsize(800, 500)
         self.configure(bg="#ffffff")
         
         self.current_frame = None
@@ -98,11 +98,24 @@ class MedPulseTkApp(tk.Tk):
         icon_path = os.path.join(base_path, 'pill.ico')
         if not os.path.exists(icon_path) and getattr(sys, 'frozen', False):
             icon_path = os.path.join(os.path.dirname(sys.executable), 'pill.ico')
-        if os.path.exists(icon_path):
+            
+        import platform
+        # Check if running on Windows XP (version <= 5)
+        is_xp = platform.release() == 'XP' or (hasattr(sys, 'getwindowsversion') and sys.getwindowsversion().major <= 5)
+        
+        if is_xp:
+            icon_b64 = "R0lGODlhIAAgAIUAAAAAADpDQfdtV/nqsTVAPkpIRP7ytzM8PEJKSVRVVUpSUNVmVFNaUENLSkBJR9zUo8/Jm0pTUZNYTHp6ellmZLVgUbaxjI2OdOndqbFfUbGtibG5uaqqVf9wWVJlVqCdfp+fn5yef3//f39/j6pVVVVVakZQTT9VVQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAgACAAQAj/AAEIHEiwoEAKChoEWBiggQIKBiMmQMDwAIMHBgZo3LjRAASGAQAoYEigwAIBKFFWCEAgwIEAGjIaeMDg5UITIgAoZCkhpc+UCwq0XIggQcSjBidEYOmywAUIGDBAuFDAZgAFBSeCHPoyJsevBi7Y3Lnw5M+zK0EujLDBIAeKCwm0LFCA5dAARZHqPToBLsm7REvsBaC1pUWMXwd4FLoQa1a/Lj9kTPwVA+OQhP2WXNBhpWGYkzvStOkgwciFJs+m9OwyQIiaDNkOjFtA9dmgdxFMkOiAtlmfuBnmHSxQQW+1Cx04Js58oHHkyZcz37A07ku6LnNzGAyiuksGEAxMlxYPAXaA0ki1LjwcGqzYhQ0k+mVPmaPloY/VtrTQPrHHuwOpx1IBEjC1X38aLTYUViRolhpKGRgYAH+iwdYSVh4ct5lqEbZ04GhMRbCbTnH1ZBuEBh7wUksRjEAQbSf61IEEgDUw4osM/WZbcESdcNRpATx422V4GaUXkCVJYNYCEhA53GAeQGaXWk82BwBCZDX0kJUABAQAOw=="
             try:
-                self.iconbitmap(icon_path)
+                self._icon_img = tk.PhotoImage(data=icon_b64)
+                self.tk.call('wm', 'iconphoto', self._w, True, self._icon_img)
             except Exception:
                 pass
+        else:
+            if os.path.exists(icon_path):
+                try:
+                    self.iconbitmap(icon_path)
+                except Exception:
+                    pass
 
     # ------------------------------------------------------------------ #
     #  Helper: shorthand for self.translator.t
@@ -112,9 +125,13 @@ class MedPulseTkApp(tk.Tk):
 
     def _build_layout(self):
         # Sidebar
-        self.sidebar = ttk.Frame(self, style="Sidebar.TFrame", width=200)
-        self.sidebar.pack(side="left", fill="y")
-        self.sidebar.pack_propagate(False)
+        self.sidebar_container = ttk.Frame(self, style="Sidebar.TFrame", width=220)
+        self.sidebar_container.pack(side="left", fill="y")
+        self.sidebar_container.pack_propagate(False)
+        
+        self.sidebar_scroll = ScrollableFrame(self.sidebar_container, bg="#f3f4f6")
+        self.sidebar_scroll.pack(fill="both", expand=True)
+        self.sidebar = self.sidebar_scroll.scrollable_frame
         
         ttk.Label(self.sidebar, text="MedPulse", style="Sidebar.TLabel", font=("Segoe UI", 14, "bold")).pack(pady=(20, 10), padx=10, anchor="w")
         ttk.Label(self.sidebar, text=self._t("infusion_speed_calc", "Clinical Calculator"), style="Sidebar.TLabel", font=("Segoe UI", 9), foreground="#6b7280").pack(pady=(0, 20), padx=10, anchor="w")
@@ -127,7 +144,7 @@ class MedPulseTkApp(tk.Tk):
         self.header_frame = ttk.Frame(self.main_content, style="TFrame")
         self.header_frame.pack(fill="x", padx=30, pady=(20, 10))
         
-        self.lang_btn = ttk.Button(self.header_frame, text="🌏 Language", command=self.toggle_language)
+        self.lang_btn = ttk.Button(self.header_frame, text="Language", command=self.toggle_language)
         self.lang_btn.pack(side="right", anchor="n")
         
         title_container = ttk.Frame(self.header_frame, style="TFrame")
@@ -139,8 +156,9 @@ class MedPulseTkApp(tk.Tk):
         self.subtitle_label.pack(anchor="w", pady=(5,0))
         
         # Content Container
-        self.content_container = ttk.Frame(self.main_content, style="TFrame")
-        self.content_container.pack(fill="both", expand=True, padx=30, pady=10)
+        self.content_scroll = ScrollableFrame(self.main_content, bg="#ffffff")
+        self.content_scroll.pack(fill="both", expand=True, padx=20, pady=10)
+        self.content_container = self.content_scroll.scrollable_frame
 
         # Define views — every label and description goes through _t()
         self.views = [
@@ -175,7 +193,7 @@ class MedPulseTkApp(tk.Tk):
             if not self.preferences.get(view_id, True) and view_id != "settings":
                 continue
                 
-            btn = ttk.Button(self.sidebar, text=f"  {label}", style="Sidebar.TButton", command=lambda vid=view_id: self.show_view(vid))
+            btn = ttk.Button(self.sidebar, text="  " + label, style="Sidebar.TButton", command=lambda vid=view_id: self.show_view(vid))
             btn.pack(fill="x", padx=10, pady=2)
             self.sidebar_buttons[view_id] = btn
 
@@ -217,7 +235,9 @@ class MedPulseTkApp(tk.Tk):
         self.title(self._t("app_title", "MedPulse"))
         
         # 3. Destroy current layout
-        if hasattr(self, 'sidebar'): self.sidebar.destroy()
+        if hasattr(self, 'sidebar_container'): self.sidebar_container.destroy()
+        elif hasattr(self, 'sidebar'): self.sidebar.destroy()
+        
         if hasattr(self, 'main_content'): self.main_content.destroy()
         
         # 4. Clear cache

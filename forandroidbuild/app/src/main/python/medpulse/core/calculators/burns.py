@@ -1,17 +1,14 @@
 """Calculators for burn fluid resuscitation."""
-
-from dataclasses import dataclass
-
 from medpulse.core.exceptions import ValidationError
 from medpulse.core.models import CalculationResult
 from medpulse.i18n import t
 
-
-@dataclass
 class ParklandResult(CalculationResult):
-    total_24h_ml: float = 0.0
-    first_8h_rate_ml_h: float = 0.0
-    next_16h_rate_ml_h: float = 0.0
+    def __init__(self, key, label, formula, substitution, value, unit, reference, interpretation="", latex_formula="", conclusion="", warnings=None, metadata=None, total_24h_ml=0.0, first_8h_rate_ml_h=0.0, next_16h_rate_ml_h=0.0):
+        super().__init__(key, label, formula, substitution, value, unit, reference, interpretation, latex_formula, conclusion, warnings, metadata)
+        self.total_24h_ml = total_24h_ml
+        self.first_8h_rate_ml_h = first_8h_rate_ml_h
+        self.next_16h_rate_ml_h = next_16h_rate_ml_h
 
 
 def _coerce_float(value, error_key, default_message):

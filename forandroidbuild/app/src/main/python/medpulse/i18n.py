@@ -1,7 +1,7 @@
 """Minimal JSON-based i18n support."""
 
 import json
-from importlib import resources
+import pkgutil
 
 
 DEFAULT_LOCALE = "en"
@@ -12,27 +12,26 @@ def _load_locale(locale):
     package = "medpulse.locales"
     
     # Try exact match first
-    try:
-        with resources.open_text(package, "%s.json" % normalized, encoding="utf-8") as handle:
-            return json.load(handle)
-    except FileNotFoundError:
-        pass
+    data = pkgutil.get_data(package, "%s.json" % normalized)
+    if data is not None:
+        return json.loads(data.decode("utf-8"))
         
     # Try base language (e.g. 'en' from 'en_US')
     base_lang = normalized.split("_")[0]
     if base_lang != normalized:
-        try:
-            with resources.open_text(package, "%s.json" % base_lang, encoding="utf-8") as handle:
-                return json.load(handle)
-        except FileNotFoundError:
-            pass
+        data = pkgutil.get_data(package, "%s.json" % base_lang)
+        if data is not None:
+            return json.loads(data.decode("utf-8"))
 
     # Fallback to default
     if normalized == DEFAULT_LOCALE or base_lang == DEFAULT_LOCALE:
         raise FileNotFoundError("Default locale %s.json not found" % DEFAULT_LOCALE)
         
-    with resources.open_text(package, "%s.json" % DEFAULT_LOCALE, encoding="utf-8") as handle:
-        return json.load(handle)
+    data = pkgutil.get_data(package, "%s.json" % DEFAULT_LOCALE)
+    if data is not None:
+        return json.loads(data.decode("utf-8"))
+    
+    return {}
 
 
 class Translator(object):

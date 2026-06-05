@@ -1,19 +1,16 @@
 """Timer dataclasses."""
 
-from dataclasses import dataclass
-
-
-@dataclass
 class TimerPreset:
-    key: str
-    label: str
-    duration_seconds: int
-    note: str = ""
+    def __init__(self, key, label, duration_seconds, note=""):
+        self.key = key
+        self.label = label
+        self.duration_seconds = duration_seconds
+        self.note = note
 
 
-@dataclass
 class TimerState:
-    elapsed_seconds: int
-    remaining_seconds: int
-    done: bool
+    def __init__(self, elapsed_seconds, remaining_seconds, done):
+        self.elapsed_seconds = elapsed_seconds
+        self.remaining_seconds = remaining_seconds
+        self.done = done
 

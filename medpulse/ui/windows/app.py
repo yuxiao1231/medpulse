@@ -5,6 +5,7 @@ from tkinter import messagebox, ttk
 import json
 import sys
 import os
+import ctypes
 
 from medpulse.core.calculators import (
     analyze_abg,
@@ -95,12 +96,13 @@ class MedPulseTkApp(tk.Tk):
         style.configure("Subtitle.TLabel", font=("Segoe UI", 12), background="#ffffff", foreground="#4b5563")
 
     def _load_fonts(self):
-        import ctypes
         if sys.platform == "win32":
-            base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-            font_path = os.path.join(base_path, 'assets', 'unifont-16.0.04.ttf')
-            if not os.path.exists(font_path) and getattr(sys, 'frozen', False):
-                font_path = os.path.join(os.path.dirname(sys.executable), 'assets', 'unifont-16.0.04.ttf')
+            if getattr(sys, 'frozen', False):
+                base_path = sys._MEIPASS
+                font_path = os.path.join(base_path, 'medpulse', 'ui', 'windows', 'assets', 'unifont-16.0.04.ttf')
+            else:
+                base_path = os.path.dirname(os.path.abspath(__file__))
+                font_path = os.path.join(base_path, 'assets', 'unifont-16.0.04.ttf')
             
             if os.path.exists(font_path):
                 try:
