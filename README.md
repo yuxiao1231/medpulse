@@ -142,4 +142,5 @@ cd forandroidbuild
 
 - **MedPulse** is licensed under the **MIT License**.
 - The Android application utilizes [Chaquopy](https://chaquo.com/chaquopy/) to embed Python into the Android environment.
+- The bundled fallback font **WenQuanYi Micro Hei** (文泉驿微米黑) is licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) / GPL v3 dual-license.
 - Medical formulas are based on established clinical guidelines (e.g., AHA 2020, Sepsis-3, surviving sepsis campaign). *These tools are designed to augment, not replace, clinical judgment. / 这些工具旨在辅助而非替代临床决策。*
